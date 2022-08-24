@@ -1,0 +1,9 @@
+# If you want to use ntrip, do the following:
+# You must rename "ntrip_config_template.yaml" to "ntrip_config.yaml"
+# And fill in the following parameters
+
+ntrip_address: ntrip.ales-corp.co.jp # ntrip server ip address
+ntrip_port: 2101 # ntrip server's port number
+ntrip_username: pza2d0yl #qg3009w3
+ntrip_password: 2z0k7v #1n1d45
+ntrip_mountpoint: RTCM31

@@ -1,0 +1,40 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="base2camera"
+        args="0.25 0 0.89 0.0 0.0 0.0 base_link depth_camera_link 100" />
+
+    <node pkg="rtabmap_ros" type="rgbd_odometry" name="rgbd_odometry" output="screen">
+        <remap from="rgb/camera_info"     to="/k4a/depth/camera_info"/>
+        <remap from="rgb/image"       to="/k4a/rgb_to_depth/image_rect"/>
+        <remap from="depth/image"     to="/k4a/depth/image_rect"/>
+        <remap from="odom"            to="/vo"/>
+       
+        <param name="subscribe_rgbd"           type="bool"   value="false"/>
+
+        <param name="approx_sync"          value="true"/>
+        <param name="queue_size"          value="10"/>
+        <param name="wait_for_transform_duration" type="double" value="0.2"/>
+        <param name="frame_id"                 type="string" value="base_link"/>
+        <param name="rgbd_cameras"             type="int"    value="1"/>
+        <param name="Vis/FeatureType"       type="string" value="8"/>
+        <param name="Vis/EstimationType"       type="string" value="0"/>
+        <param name="Vis/CorGuessWinSize"       type="string" value="0"/> 
+        <param name="Odom/ResetCountdown"    type="string" value="1"/>
+        <param name="Reg/Force3DoF"    value="true" />
+    </node>
+
+    <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" respawn="true">
+        <param name="frequency" value="10"/>
+        <param name="delay" value="0.1"/>
+        <param name="yaw_offset" value="1.570796327"/>
+        <param name="zero_altitude" value="true"/>
+        <param name="broadcast_cartesian_transform" value="true"/>
+        <param name="publish_filtered_gps" value="true"/>
+        <param name="use_odometry_yaw" value="false"/>
+        <param name="wait_for_datum" value="false"/>
+        <remap from="/odometry/filtered" to="/odometry/filtered"/>
+        <remap from="/imu/data" to="/k4a/imu"/>
+        <remap from="/gps/fix" to="/RTK_NavSatFix"/>
+    </node>
+</launch>
+
+

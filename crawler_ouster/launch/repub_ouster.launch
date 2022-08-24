@@ -1,0 +1,14 @@
+<!-- -->
+<launch>
+  <!-- <node pkg="tf" type="static_transform_publisher" name="baselink_to_velodyne" args="0 0 0 0 0 0 /base_link /velodyne 100" /> -->
+  <node pkg="tf" type="static_transform_publisher" name="baselink_to_os_sensor" args="0 0 0 0 0 0 /base_link /os_sensor 100" />
+  <node pkg="crawler_ouster" type="repub_ouster_node" name="repub_ouster" output="screen" required="true" />
+  <node pkg="crawler_ouster" type="repub_imu.py" name="repub_imu" output="screen" required="true" />
+    <!-- <remap from="~/points" to="/points_raw"/> !-->
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="ImuFilter">
+        <param name="use_mag" type="bool" value="false" />
+        <param name="publish_tf" type="bool" value="false" />
+        <param name="world_frame" type="string" value="enu" />
+        <remap from="/imu/data_raw" to="/repub_imu"/>
+    </node>
+</launch>
