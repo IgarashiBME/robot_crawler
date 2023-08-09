@@ -1,0 +1,13 @@
+<launch>
+  <arg name="config_file" default="$(find ntrip)/config/ntrip_config.yaml"/>
+  <arg name="rtk_config_file" default="$(find ubx_analyzer)/config/vrs_rover.yaml"/>
+
+  <node pkg="ntrip" type="ntrip.py" name="ntrip" output="screen" respawn="true">
+    <rosparam file="$(arg config_file)" command="load"/>
+  </node>
+  <node pkg="ubx_analyzer" type="ntrip_pvthp.py" name="ntrip_pvthp" output="screen" respawn="true">
+    <rosparam file="$(arg rtk_config_file)" command="load"/>
+  </node>
+</launch>
+
+
