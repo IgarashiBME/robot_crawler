@@ -1,0 +1,3 @@
+# USB port
+port: /dev/serial/by-id/usb-u-blox_AG_-_www.u-blox.com_u-blox_GNSS_receiver-if00 
+#port: /dev/serial/by-path/pci-0000:04:00.3-usb-0:2.1:1.0-port0

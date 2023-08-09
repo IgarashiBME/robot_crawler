@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find ouster_ros)/ouster.launch" />
+  <include file="$(find crawler_ouster)/launch/ouster2velodyne.launch" />
+  <include file="$(find crawler_roboteq)/launch/crawler_roboteq.launch" />
+  <include file="$(find robogaia_encoder)/launch/robogaia_encoder.launch" />
+</launch>

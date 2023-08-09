@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="robogaia_encoder" name="robogaia_odometry" type="robogaia_odometry.py" output="screen" respawn="true"/>
+</launch>

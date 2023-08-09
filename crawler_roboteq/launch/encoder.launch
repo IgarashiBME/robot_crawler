@@ -1,0 +1,6 @@
+<launch>
+
+  <node pkg="crawler_roboteq" name="crawler_roboteq_driver" type="with_encoder.py" output="screen" />
+
+
+</launch>
